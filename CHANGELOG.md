@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-09-07
+
+- Added a Marketplace icon (`images/icon.png`, 128×128, cropped from
+  the Gap Hunter Labs brand mark) — 0.1.0 published with the default
+  placeholder icon since none was configured yet.
+
 ## 0.1.0 — 2026-09-06
 
 Initial pilot release.
