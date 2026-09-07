@@ -3,7 +3,7 @@
   "displayName": "JWT Companion",
   "description": "Decode and inspect JSON Web Tokens on hover or via command -- no data leaves your editor.",
   "version": "0.1.0",
-  "publisher": "gap-hunter-labs",
+  "publisher": "GapHunterLabs",
   "license": "Apache-2.0",
   "engines": {
     "vscode": "^1.85.0"
