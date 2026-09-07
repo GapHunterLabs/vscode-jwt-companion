@@ -1,0 +1,52 @@
+{
+  "name": "jwt-companion",
+  "displayName": "JWT Companion",
+  "description": "Decode and inspect JSON Web Tokens on hover or via command -- no data leaves your editor.",
+  "version": "0.1.0",
+  "publisher": "gap-hunter-labs",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "jwt",
+    "json web token",
+    "oauth",
+    "decode",
+    "security"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GapHunterLabs/vscode-jwt-companion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GapHunterLabs/vscode-jwt-companion/issues"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jwtCompanion.decodeSelection",
+        "title": "JWT Companion: Decode Selected Token"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "test": "tsc -p ./ && node --test \"out/test/**/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.2"
+  }
+}
