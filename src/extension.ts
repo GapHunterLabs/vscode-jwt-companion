@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { decodeJwt, looksLikeJwt, JwtDecodeError, JwtDecodeResult } from './jwtDecode';
+import { recordHit } from './reviewPrompt';
 
 // Matches the hover word-range pattern: same shape as JWT_PATTERN in
 // jwtDecode.ts, kept separate because VS Code's word-range regex has its
@@ -37,7 +38,7 @@ function buildHoverMarkdown(result: JwtDecodeResult): vscode.MarkdownString {
 
 let outputChannel: vscode.OutputChannel | undefined;
 
-function writeDecodeResult(candidate: string): void {
+function writeDecodeResult(context: vscode.ExtensionContext, candidate: string): void {
   let result: JwtDecodeResult;
   try {
     result = decodeJwt(candidate.trim());
@@ -46,6 +47,10 @@ function writeDecodeResult(candidate: string): void {
     void vscode.window.showErrorMessage(`JWT Companion: ${message}`);
     return;
   }
+
+  // A real token was actually decoded -- never reached on the error
+  // path above, so this only fires for a genuine, successful decode.
+  recordHit(context);
 
   if (!outputChannel) {
     outputChannel = vscode.window.createOutputChannel('JWT Companion');
@@ -111,7 +116,7 @@ export function activate(context: vscode.ExtensionContext): void {
       );
       return;
     }
-    writeDecodeResult(candidate);
+    writeDecodeResult(context, candidate);
   });
 
   context.subscriptions.push(hoverProvider, decodeCommand);
